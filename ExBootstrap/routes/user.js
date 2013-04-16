@@ -3,14 +3,14 @@ exports.list = function(req, res){
 };
 
 exports.profile = function(req, res){
-	if(req.cookies.email == null || req.cookies.email == "")
+	if(req.cookies.user == null || req.cookies.user == "")
 	{
-		res.redirect('/signup/');
+		res.redirect('/');
 	}
 	else{
 	     var data = {
       title: 'Profile',
-      email: req.cookies.email
+      email: req.cookies.user
    };
    res.render('profile',data);	
 };}
