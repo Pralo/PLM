@@ -6,14 +6,6 @@ exports.login = function(req,res){
    res.render('login',data);
 }
 
-exports.signup = function(req,res){
-   var data = {
-      title: 'Sign up',
-      information: 'Please Insert Info'
-   }
-   res.render('login',data);
-}
-
 exports.youtube = function(req,res){
    var data = {
       title: 'Youtube API',

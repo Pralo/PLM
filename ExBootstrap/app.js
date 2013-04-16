@@ -28,36 +28,36 @@ app.configure(function(){
 app.configure('development', function(){
   app.use(express.errorHandler());
 });
-
-app.get('/', routes.signup); 
+app.get('/', routes.login);
 app.get('/you', routes.youtube); 
 app.get('/io', routes.socket); 
-app.get('/login', routes.login);
 app.get('/users', user.list);
 app.get('/users/:name', user.profile);
+app.get('/reset/',user.resetPwd);
 
 //Create Account Or Reset Password
-app.post('/signup/', function(req, res) {
+app.post('/login/', function(req, res) {
+  //type = 1; crearCuenta
+  //type = 2; 
   var type = req.body.btnDo;
   if(type == 1)
   {
-      var Vemail = req.body.inputEmail;
+      var VEmail = req.body.create_Email_id;
+      var VUser = req.body.create_Username_id;
+      var VPwd = req.body.create_Password_id;
       mD.createAccount(
       {
-          email: Vemail ,
-          password: req.body.inputPassword
+          email: VEmail,
+          user: VUser,
+          password: VPwd
       } , function( error, docs) {
-              res.cookie('email', Vemail, {maxAge: 600000});
-              res.redirect('/users/' + Vemail);
+              res.cookie('user', VUser, {maxAge: 600000});
+              res.redirect('/users/' + VUser);
          });
-  }
-  else if(type == 2)
-  {
-    user.resetPwd(req,res);
   }
   else
   {
-    res.redirect('/signup/');
+    res.redirect('/');
   }
 });
 
@@ -146,5 +146,5 @@ sio.sockets.on('connection', function(socket) {
 
 
 http.listen(app.get('port'), function(){
-  console.log("Express server listening on port " + app.get('port'));
+  console.log("+Express server listening on port " + app.get('port'));
 });

@@ -23,7 +23,7 @@ MongoD.prototype.createAccount = function(userInfo, callback) {
     this.getCollection(function(error, collection) {
       if( error ) callback(error)
       else {
-        collection.insert({ 'email': userInfo.email, 'password': userInfo.password }, function() {
+        collection.insert({  'user': userInfo.user,'password': userInfo.password, 'email': userInfo.email  }, function() {
           callback(null, userInfo);
         });
       }
