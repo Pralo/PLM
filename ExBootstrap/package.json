@@ -11,6 +11,7 @@
     "mongodb": ">= 1.2.14",
     "nodemon": "*",
     "nodemailer": "0.4.1",
-    "socket.io": "0.9.14"
+    "socket.io": "0.9.14",
+    "crypto":"*"
   }
 }
