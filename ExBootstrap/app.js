@@ -36,9 +36,11 @@ app.get('/users/:name', user.profile);
 app.get('/reset/',user.resetPwd);
 
 //Create Account Or Reset Password
-app.post('/login/', function(req, res) {
+app.post('/', function(req, res) {
   //type = 1; crearCuenta
-  //type = 2; 
+  //type = 2; login
+  //type = 3; resetPwd
+  //type =/= redirect '/'
   var type = req.body.btnDo;
   if(type == 1)
   {
@@ -54,6 +56,14 @@ app.post('/login/', function(req, res) {
               res.cookie('user', VUser, {maxAge: 600000});
               res.redirect('/users/' + VUser);
          });
+  }
+  else if(type == 2)
+  {
+    //Login
+  }
+  else if(type == 3)
+  {
+    user.resetPwd(req,res);
   }
   else
   {
@@ -111,7 +121,7 @@ app.post('/users/resetpwd/',function(req, res) {
           console.log("Message sent: " + res.message);
       }
   });
-            res.redirect('/signup/');
+            res.redirect('/');
   });
 
 sio.sockets.on('connection', function(socket) {

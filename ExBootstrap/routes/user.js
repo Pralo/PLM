@@ -15,13 +15,6 @@ exports.profile = function(req, res){
    res.render('profile',data);	
 };}
 
-exports.signup = function(req,res){
-   var data = {
-      title: 'Sign up',
-      information: 'Form - Create New Account'
-   };
-   res.render('login',data);
-};	
 exports.changePwd = function(req,res){
    var data = {
       title: 'Sign up',
